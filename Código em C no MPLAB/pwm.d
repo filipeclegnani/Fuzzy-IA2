@@ -1,0 +1,1 @@
+ pwm.d  pwm.p1:  C:/Users/332414/Documents/Fuzzy-IA2/Código\ em\ C\ no\ MPLAB/pwm.c C:/Users/332414/Documents/Fuzzy-IA2/Código\ em\ C\ no\ MPLAB/config.h C:/Users/332414/Documents/Fuzzy-IA2/Código\ em\ C\ no\ MPLAB/pwm.h

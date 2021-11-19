@@ -1,0 +1,1 @@
+ i2c.d  i2c.p1:  C:/Users/332414/Documents/Fuzzy-IA2/Código\ em\ C\ no\ MPLAB/i2c.c C:/Users/332414/Documents/Fuzzy-IA2/Código\ em\ C\ no\ MPLAB/config.h C:/Users/332414/Documents/Fuzzy-IA2/Código\ em\ C\ no\ MPLAB/i2c.h

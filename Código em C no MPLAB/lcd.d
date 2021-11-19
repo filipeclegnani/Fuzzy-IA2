@@ -1,0 +1,1 @@
+ lcd.d  lcd.p1:  C:/Users/332414/Documents/Fuzzy-IA2/Código\ em\ C\ no\ MPLAB/lcd.c C:/Users/332414/Documents/Fuzzy-IA2/Código\ em\ C\ no\ MPLAB/config.h C:/Users/332414/Documents/Fuzzy-IA2/Código\ em\ C\ no\ MPLAB/lcd.h

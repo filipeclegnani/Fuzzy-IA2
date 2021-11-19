@@ -1,0 +1,1 @@
+ eeprom.d  eeprom.p1:  C:/Users/332414/Documents/Fuzzy-IA2/Código\ em\ C\ no\ MPLAB/eeprom.c C:/Users/332414/Documents/Fuzzy-IA2/Código\ em\ C\ no\ MPLAB/config.h C:/Users/332414/Documents/Fuzzy-IA2/Código\ em\ C\ no\ MPLAB/eeprom.h
