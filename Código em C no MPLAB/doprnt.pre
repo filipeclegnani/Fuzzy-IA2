@@ -284,14 +284,11 @@ const static unsigned int dpowers[] = {1, 10, 100, 1000, 10000,
 # 455
 int
 
-# 492
-sprintf(char * sp, const char * f, ...)
+
+_doprnt(struct __prbuf * pb, register const char * f, register va_list ap)
 {
-va_list ap;
 
-
-
-
+# 499
 signed char c;
 
 int width;
@@ -312,16 +309,13 @@ unsigned _len;
 } _str;
 } _val;
 
-# 542
-*ap = __va_start();
-
-
+# 545
 while(c = *f++) {
 
 if(c != '%')
 
 {
-((*sp++ = (c)));
+if(pb->func) (pb->func(c)); else ((*pb->ptr++ = c));
 continue;
 }
 
@@ -409,12 +403,12 @@ if(flag & 0x04) {
 
 
 if(flag & 0x03)
-((*sp++ = ('-')));
+if(pb->func) (pb->func('-')); else ((*pb->ptr++ = '-'));
 
 # 1424
 if(width)
 do
-((*sp++ = ('0')));
+if(pb->func) (pb->func('0')); else ((*pb->ptr++ = '0'));
 while(--width);
 
 } else
@@ -426,12 +420,12 @@ if(width
 # 1437
 )
 do
-((*sp++ = (' ')));
+if(pb->func) (pb->func(' ')); else ((*pb->ptr++ = ' '));
 while(--width);
 
 # 1447
 if(flag & 0x03)
-((*sp++ = ('-')));
+if(pb->func) (pb->func('-')); else ((*pb->ptr++ = '-'));
 
 # 1478
 }
@@ -449,7 +443,7 @@ c = (_val._val / dpowers[prec]) % 10 + '0';
 
 # 1532
 }
-((*sp++ = (c)));
+if(pb->func) (pb->func(c)); else ((*pb->ptr++ = c));
 }
 
 # 1542
@@ -457,9 +451,7 @@ c = (_val._val / dpowers[prec]) % 10 + '0';
 
 alldone:
 
-
-*sp = 0;
-
+# 1549
 return 0;
 }
 

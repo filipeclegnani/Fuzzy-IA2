@@ -30,19 +30,44 @@ unsigned int contagens_tm0 = 0;
 unsigned int contador_rb6 = 0;
 unsigned int tempo_rb6 = 0;
 
-float trapezoidal(int x, int a, int b, int c, int d){
+float trapezoidal(float x, float a, float b, float c, float d){
 	if (x <= a){
+	    printf("1");
 		return 0.0f;
 	}
 	if (a < x && x <= b){
-		return (float)(x-a)/(float)(b-a);
+	    printf("2");
+		return (x-a)/(b-a);
 	}
 	if (b < x && x <= c){
-		return 1.0f
+	    printf("3");
+		return 1.0f;
 	}
 	if (c < x && x <= d){
-		return (float)(x-c)/(float)(b-c);
+	    printf("4");
+		return ((d-x)/(d-c));
 	}
+	if (x > d){
+	    printf("5");
+		return 0.0f;
+	}
+}
+
+float triangular(float x, float a, float b, float c){
+    if (x <= a){
+        return  0.0f;
+    }
+	if ((a < x) && (x <= b)){
+        return  ((x - a) / (b - a));
+    }
+	if ((b < x) && (x <= c)){
+        return  ((x - c) / (b - c));
+    }
+	if (x > c){
+        return  0.0f;
+	}
+
+
 }
 
 //-----------------------------------------------------------------------------
@@ -95,7 +120,7 @@ void interrupt ISR(void)
 			TMR1L = 0x00;
 			TMR1H = 0x00;
 			
-			PWM_DutyCycle2(0);
+			PWM_DutyCycle2((int)(1023 * (1-triangular((float)rpm, 4900.0f, 5000.0f, 5100.0f))));
 			
 			// Variáveis de controle (nível baixo).
 			PORTBbits.RB6 = 0;
