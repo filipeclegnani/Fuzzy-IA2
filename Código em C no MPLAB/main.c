@@ -5,6 +5,9 @@
 #include <stdio.h>
 #include <stdlib.h>		// comando ftoa().
 
+#define pointRigth 800
+#define pointLeft  200
+
 // Declaração das bibliotecas com as configurações e funcionalidades do PIC.
 #include "usart.h"
 #include "adc.h"
@@ -24,6 +27,11 @@ unsigned char display[10];
 int status = 0;
 unsigned int pulsos = 0;
 unsigned int rpm = 0;
+
+#define pointRight 800.0f
+#define pointLeft  1200.0f
+
+float requiredRpm = 9000.0f;
 
 
 unsigned int contagens_tm0 = 0;
@@ -120,7 +128,7 @@ void interrupt ISR(void)
 			TMR1L = 0x00;
 			TMR1H = 0x00;
 			
-			PWM_DutyCycle2((int)(1023 * (1-triangular((float)rpm, 4900.0f, 5000.0f, 5100.0f))));
+			PWM_DutyCycle2((int)(1023 * (trapezoidal((float)rpm, -10.0f, 0.0f, requiredRpm - pointLeft, requiredRpm + pointRight))));
 			
 			// Variáveis de controle (nível baixo).
 			PORTBbits.RB6 = 0;
@@ -190,7 +198,7 @@ void main(void)
 
 	// Inicia os módulos PWM desligados.
 	PWM_DutyCycle1(0);
-	PWM_DutyCycle2(0);
+	PWM_DutyCycle2(1023);
 
 	// Seta o TIMER 0 para estouro de 1 em 1ms.
 	TIMER0_Set(238);
