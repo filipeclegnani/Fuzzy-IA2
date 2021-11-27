@@ -1,1 +1,1 @@
- adc.d  adc.p1:  C:/Users/332414/Documents/Fuzzy-IA2/Código\ em\ C\ no\ MPLAB/adc.c C:/Users/332414/Documents/Fuzzy-IA2/Código\ em\ C\ no\ MPLAB/adc.h C:/Users/332414/Documents/Fuzzy-IA2/Código\ em\ C\ no\ MPLAB/config.h
+ adc.d  adc.p1:  C:/Users/332414/Desktop/Fuzzy-IA2/Código\ em\ C\ no\ MPLAB/adc.c C:/Users/332414/Desktop/Fuzzy-IA2/Código\ em\ C\ no\ MPLAB/adc.h C:/Users/332414/Desktop/Fuzzy-IA2/Código\ em\ C\ no\ MPLAB/config.h

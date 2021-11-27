@@ -31,7 +31,7 @@ unsigned int rpm = 0;
 #define pointRight 800.0f
 #define pointLeft  1200.0f
 
-float requiredRpm = 9000.0f;
+float requiredRpm = 1000.0f;
 
 
 unsigned int contagens_tm0 = 0;
@@ -157,6 +157,7 @@ void interrupt ISR(void)
 	}
 }
 
+
 //-----------------------------------------------------------------------------
 void main(void)
 {
@@ -194,7 +195,7 @@ void main(void)
 	// Rotinas do LCD.
 	LCD_Init();								// Inicialização do LCD.
 	LCD_Cursor(0,0);						// Posicionamento da string na linha 0 e coluna 0;
-	LCD_WriteString("Inicializando...");	// Escrita da string no LCD.
+	//LCD_WriteString("Inicializando...");	// Escrita da string no LCD.
 
 	// Inicia os módulos PWM desligados.
 	PWM_DutyCycle1(0);

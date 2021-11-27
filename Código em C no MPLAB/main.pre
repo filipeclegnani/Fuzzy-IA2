@@ -1,8 +1,8 @@
 
-# 1 "C:\Users\332414\Documents\Fuzzy-IA2\Código em C no MPLAB\main.c"
+# 1 "C:\Users\332414\Desktop\Fuzzy-IA2\Código em C no MPLAB\main.c"
 
 
-# 6 "C:\Users\332414\Documents\Fuzzy-IA2\Código em C no MPLAB\config.h"
+# 6 "C:\Users\332414\Desktop\Fuzzy-IA2\Código em C no MPLAB\config.h"
 #pragma config FOSC = HS
 #pragma config WDTE = OFF
 #pragma config PWRTE = ON
@@ -1571,23 +1571,23 @@ extern char * ultoa(char * buf, unsigned long val, int base);
 
 extern char * ftoa(float f, int * status);
 
-# 6 "C:\Users\332414\Documents\Fuzzy-IA2\Código em C no MPLAB\usart.h"
+# 6 "C:\Users\332414\Desktop\Fuzzy-IA2\Código em C no MPLAB\usart.h"
 void USART_Init(long);
 void USART_WriteChar(unsigned char);
 void USART_WriteString(const char *);
 unsigned char USART_ReceiveChar(void);
 
-# 6 "C:\Users\332414\Documents\Fuzzy-IA2\Código em C no MPLAB\adc.h"
+# 6 "C:\Users\332414\Desktop\Fuzzy-IA2\Código em C no MPLAB\adc.h"
 void ADC_Init();
 unsigned int ADC_Read(unsigned int channel);
 
-# 5 "C:\Users\332414\Documents\Fuzzy-IA2\Código em C no MPLAB\timers.h"
+# 5 "C:\Users\332414\Desktop\Fuzzy-IA2\Código em C no MPLAB\timers.h"
 void TIMER0_Init();
 void TIMER0_Set(unsigned char);
 void TIMER1_Init();
 void TIMER1_Set(unsigned short);
 
-# 12 "C:\Users\332414\Documents\Fuzzy-IA2\Código em C no MPLAB\lcd.h"
+# 12 "C:\Users\332414\Desktop\Fuzzy-IA2\Código em C no MPLAB\lcd.h"
 void LCD_Cursor(unsigned char, unsigned char);
 void LCD_WriteCmd(unsigned char);
 void LCD_WriteData(unsigned char);
@@ -1595,7 +1595,7 @@ void LCD_WriteString(const char *);
 void LCD_Clear();
 void LCD_Init();
 
-# 5 "C:\Users\332414\Documents\Fuzzy-IA2\Código em C no MPLAB\i2c.h"
+# 5 "C:\Users\332414\Desktop\Fuzzy-IA2\Código em C no MPLAB\i2c.h"
 void I2C_Init(void);
 void I2C_Idle(void);
 void I2C_Start(void);
@@ -1606,22 +1606,22 @@ void I2C_Stop(void);
 void I2C_ACK(void);
 void I2C_NACK(void);
 
-# 5 "C:\Users\332414\Documents\Fuzzy-IA2\Código em C no MPLAB\spi.h"
+# 5 "C:\Users\332414\Desktop\Fuzzy-IA2\Código em C no MPLAB\spi.h"
 void SPI_Init(void);
 unsigned char SPI_Write(unsigned char);
 void SPI_Wait();
 
-# 5 "C:\Users\332414\Documents\Fuzzy-IA2\Código em C no MPLAB\eeprom.h"
+# 5 "C:\Users\332414\Desktop\Fuzzy-IA2\Código em C no MPLAB\eeprom.h"
 unsigned char EEPROM_Read(unsigned char);
 void EEPROM_Write(unsigned char, unsigned char);
 void EEPROM_Erase();
 
-# 5 "C:\Users\332414\Documents\Fuzzy-IA2\Código em C no MPLAB\pwm.h"
+# 5 "C:\Users\332414\Desktop\Fuzzy-IA2\Código em C no MPLAB\pwm.h"
 void PWM_Init();
 void PWM_DutyCycle1(int);
 void PWM_DutyCycle2(int);
 
-# 22 "C:\Users\332414\Documents\Fuzzy-IA2\Código em C no MPLAB\main.c"
+# 22 "C:\Users\332414\Desktop\Fuzzy-IA2\Código em C no MPLAB\main.c"
 unsigned short ADCResult = 0;
 float temp_lida = 0;
 
@@ -1634,7 +1634,7 @@ unsigned int rpm = 0;
 
 
 
-float requiredRpm = 9000.0f;
+float requiredRpm = 1000.0f;
 
 
 unsigned int contagens_tm0 = 0;
@@ -1761,6 +1761,7 @@ PIR1bits.SSPIF = 0;
 }
 
 
+
 void main(void)
 {
 TRISA = 0b00000001;
@@ -1797,7 +1798,7 @@ USART_WriteString("USART: 115.200bps\n\r");
 
 LCD_Init();
 LCD_Cursor(0,0);
-LCD_WriteString("Inicializando...");
+
 
 
 PWM_DutyCycle1(0);

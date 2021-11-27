@@ -1,1 +1,1 @@
- usart.d  usart.p1:  C:/Users/332414/Documents/Fuzzy-IA2/Código\ em\ C\ no\ MPLAB/usart.c C:/Users/332414/Documents/Fuzzy-IA2/Código\ em\ C\ no\ MPLAB/config.h C:/Users/332414/Documents/Fuzzy-IA2/Código\ em\ C\ no\ MPLAB/usart.h
+ usart.d  usart.p1:  C:/Users/332414/Desktop/Fuzzy-IA2/Código\ em\ C\ no\ MPLAB/usart.c C:/Users/332414/Desktop/Fuzzy-IA2/Código\ em\ C\ no\ MPLAB/config.h C:/Users/332414/Desktop/Fuzzy-IA2/Código\ em\ C\ no\ MPLAB/usart.h
