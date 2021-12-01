@@ -28,10 +28,12 @@ int status = 0;
 unsigned int pulsos = 0;
 unsigned int rpm = 0;
 
-#define pointRight 800.0f
-#define pointLeft  1200.0f
 
-float requiredRpm = 1000.0f;
+float requiredRpm = 5000.0f;
+
+float p1;
+float p2;
+float p3;
 
 
 unsigned int contagens_tm0 = 0;
@@ -127,8 +129,22 @@ void interrupt ISR(void)
 			// Limpa registrador para nova contagem.
 			TMR1L = 0x00;
 			TMR1H = 0x00;
+
+			p1 = trapezoidal((float)rpm, -10.0f, 0.0f, (requiredRpm - (0.66f * requiredRpm) - 100.0f), (requiredRpm - ((2/3)*requiredRpm) + 100));
+			p2 = trapezoidal((float)rpm, requiredRpm - ((2/3)*requiredRpm), requiredRpm - ((2/3)*requiredRpm) + 100, requiredRpm - ((1/3)*requiredRpm - 100),requiredRpm - ((1/3)*requiredRpm + 100));
+			p3 = trapezoidal((float)rpm, requiredRpm - ((1/3)*requiredRpm), requiredRpm - ((1/3)*requiredRpm) + 100, requiredRpm - 100,requiredRpm + 100);
 			
-			PWM_DutyCycle2((int)(1023 * (trapezoidal((float)rpm, -10.0f, 0.0f, requiredRpm - pointLeft, requiredRpm + pointRight))));
+			if(p1>p2){
+					PWM_DutyCycle2((int)(1023 * p1));
+			}else{
+				if(p2 > p3){
+					PWM_DutyCycle2((int)(767 * p2));
+				}else{
+					PWM_DutyCycle2((int)(512 * p3));
+				}	
+			}
+			
+			//PWM_DutyCycle2((int)(1023 * (trapezoidal((float)rpm, -10.0f, 0.0f, requiredRpm - pointLeft, requiredRpm + pointRight))));
 			
 			// Variáveis de controle (nível baixo).
 			PORTBbits.RB6 = 0;
@@ -195,7 +211,7 @@ void main(void)
 	// Rotinas do LCD.
 	LCD_Init();								// Inicialização do LCD.
 	LCD_Cursor(0,0);						// Posicionamento da string na linha 0 e coluna 0;
-	//LCD_WriteString("Inicializando...");	// Escrita da string no LCD.
+	LCD_WriteString("Inicializando...");	// Escrita da string no LCD.
 
 	// Inicia os módulos PWM desligados.
 	PWM_DutyCycle1(0);
@@ -218,11 +234,11 @@ void main(void)
  		USART_WriteString("\n\r");
 
      	// Apresenta as informações no LCD.
-		LCD_Clear();
-		LCD_Cursor(0,0);
-		LCD_WriteString("RPM: ");
-		LCD_Cursor(0,6);
-		LCD_WriteString(display);
+		//LCD_Clear();
+		//LCD_Cursor(0,0);
+		//LCD_WriteString("RPM: ");
+		//LCD_Cursor(0,6);
+	//	LCD_WriteString(display);
 
 		__delay_ms(200);
 	}

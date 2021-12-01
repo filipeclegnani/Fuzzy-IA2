@@ -1632,9 +1632,11 @@ unsigned int pulsos = 0;
 unsigned int rpm = 0;
 
 
+float requiredRpm = 5000.0f;
 
-
-float requiredRpm = 1000.0f;
+float p1;
+float p2;
+float p3;
 
 
 unsigned int contagens_tm0 = 0;
@@ -1731,7 +1733,21 @@ rpm = ((pulsos / 7.0) * 120);
 TMR1L = 0x00;
 TMR1H = 0x00;
 
-PWM_DutyCycle2((int)(1023 * (trapezoidal((float)rpm, -10.0f, 0.0f, requiredRpm - 1200.0f, requiredRpm + 800.0f))));
+p1 = trapezoidal((float)rpm, -10.0f, 0.0f, (requiredRpm - (0.66f * requiredRpm) - 100.0f), (requiredRpm - ((2/3)*requiredRpm) + 100));
+p2 = trapezoidal((float)rpm, requiredRpm - ((2/3)*requiredRpm), requiredRpm - ((2/3)*requiredRpm) + 100, requiredRpm - ((1/3)*requiredRpm - 100),requiredRpm - ((1/3)*requiredRpm + 100));
+p3 = trapezoidal((float)rpm, requiredRpm - ((1/3)*requiredRpm), requiredRpm - ((1/3)*requiredRpm) + 100, requiredRpm - 100,requiredRpm + 100);
+
+if(p1>p2){
+PWM_DutyCycle2((int)(1023 * p1));
+}else{
+if(p2 > p3){
+PWM_DutyCycle2((int)(767 * p2));
+}else{
+PWM_DutyCycle2((int)(512 * p3));
+}
+}
+
+
 
 
 PORTBbits.RB6 = 0;
@@ -1798,7 +1814,7 @@ USART_WriteString("USART: 115.200bps\n\r");
 
 LCD_Init();
 LCD_Cursor(0,0);
-
+LCD_WriteString("Inicializando...");
 
 
 PWM_DutyCycle1(0);
@@ -1820,13 +1836,7 @@ sprintf(display,"%04d", rpm);
 USART_WriteString(display);
 USART_WriteString("\n\r");
 
-
-LCD_Clear();
-LCD_Cursor(0,0);
-LCD_WriteString("RPM: ");
-LCD_Cursor(0,6);
-LCD_WriteString(display);
-
+# 243
 _delay((unsigned long)((200)*(18432000/4000.0)));
 }
 }
